@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#075f56">
+<title>استثمر قطر | V2</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f5f7fb;color:#18222b;font-family:Tahoma,Arial,sans-serif}.app{max-width:720px;margin:auto;min-height:100vh}
+.hero{background:linear-gradient(145deg,#075f56,#0b7569);color:#fff;padding:34px 20px 44px;border-radius:0 0 34px 34px}.brand{text-align:center;font-size:32px;font-weight:800}.sub{text-align:center;color:#d9efeb;font-size:17px;margin:10px 0 25px}
+.search{display:flex;background:#fff;border-radius:18px;padding:6px}.search input{flex:1;border:0;outline:0;padding:14px;color:#333}.search button{border:0;background:#075f56;color:#fff;border-radius:14px;padding:0 18px}
+main{padding:22px 16px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.card{border:1px solid #e4e9ee;background:#fff;border-radius:22px;padding:20px 12px;min-height:160px;text-align:center;box-shadow:0 7px 22px #1b283008}.card .icon{font-size:38px}.card h3{margin:8px 0}.card p{margin:0;color:#71808c;line-height:1.7}.title{font-size:23px;margin:30px 4px 14px}
+.result{background:#fff;border:1px solid #e4e9ee;border-radius:18px;padding:16px;margin:10px 0;display:flex;justify-content:space-between;gap:10px;align-items:center}.result h4{margin:0 0 6px}.result small{color:#71808c}.badge{background:#e8f7f1;color:#08745e;border-radius:999px;padding:8px 11px;white-space:nowrap}.empty{background:#fff;border:1px dashed #ccd5dc;border-radius:18px;padding:22px;text-align:center;color:#71808c}.notice{margin-top:22px;background:#fff;border:1px solid #e4e9ee;border-radius:20px;padding:17px;line-height:1.8;color:#56636d}footer{text-align:center;color:#8a959e;padding:20px;font-size:13px}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="hero">
+<div class="brand">استثمر قطر 🇶🇦</div>
+<div class="sub">اكتشف، قارن، وحلّل فرص الاستثمار بوضوح</div>
+<div class="search"><input id="q" type="search" placeholder="ابحث عن سهم، عقار أو منطقة"><button onclick="search()">بحث</button></div>
+</header>
+<main>
+<section id="results" style="display:none"><h2 class="title">نتائج البحث</h2><div id="list"></div></section>
+<section class="grid">
+<button class="card" onclick="quick('عقارات')"><div class="icon">🏠</div><h3>العقارات</h3><p>اكتشف وقارن الفرص العقارية</p></button>
+<button class="card" onclick="quick('الأسهم')"><div class="icon">📈</div><h3>الأسهم</h3><p>متابعة وتحليل الشركات</p></button>
+<button class="card" onclick="tool('🧮 حاسبة العائد','ستصبح في المرحلة التالية حاسبة فعلية لسعر الاستثمار والمصاريف والدخل المتوقع والعائد.')"><div class="icon">🧮</div><h3>حاسبة العائد</h3><p>احسب العائد والمصاريف</p></button>
+<button class="card" onclick="tool('🔎 حلّل فرصة','سنضيف تقييمًا يشمل السعر والموقع والعائد والمخاطر والسيولة.')"><div class="icon">🔎</div><h3>حلّل فرصة</h3><p>تقييم مبني على معايير واضحة</p></button>
+</section>
+<h2 class="title">🔥 فرص تستحق الدراسة</h2>
+<div class="result"><div><h4>فرصة عقارية</h4><small>تقييم مبدئي حسب السعر والموقع والعائد</small></div><span class="badge">تحليل</span></div>
+<div class="result"><div><h4>منطقة واعدة</h4><small>استكشف فرص الاستثمار في قطر</small></div><span class="badge">استكشف</span></div>
+<div id="tool" class="notice"><b>النسخة V2</b><br>أضفنا البحث الذكي الأولي للواجهة. البيانات الحقيقية وربط الخدمات ستكون في المراحل التالية.</div>
+</main>
+<footer>استثمر قطر 🇶🇦 — منصة ذكية للبيع والشراء والاستثمار</footer>
+</div>
+<script>
+const data=[
+["عقارات قطر","عقارات","فرص عقارية للبيع والاستثمار"],
+["الدوحة","منطقة","استكشف فرص الاستثمار في الدوحة"],
+["اللؤلؤة قطر","منطقة","مشاريع وعقارات وفرص استثمارية"],
+["لوسيل","منطقة","منطقة استثمارية واعدة"],
+["الأسهم","أسهم","متابعة الشركات والأسواق"],
+["فرص استثمارية","فرص","ابحث عن فرصة مناسبة لهدفك"]
+];
+function search(){let q=document.getElementById("q").value.trim().toLowerCase();let box=document.getElementById("results"),list=document.getElementById("list");if(!q){box.style.display="none";return}let f=data.filter(x=>(x.join(" ")).toLowerCase().includes(q));box.style.display="block";list.innerHTML=f.length?f.map(x=>'<div class="result"><div><h4>'+x[0]+'</h4><small>'+x[2]+'</small></div><span class="badge">'+x[1]+'</span></div>').join(""):'<div class="empty">لم نجد نتيجة مطابقة. جرّب: الدوحة، لوسيل، اللؤلؤة، عقارات أو أسهم.</div>';box.scrollIntoView({behavior:"smooth"})}
+function quick(x){document.getElementById("q").value=x;search()}
+function tool(a,b){document.getElementById("tool").innerHTML="<b>"+a+"</b><br>"+b;document.getElementById("tool").scrollIntoView({behavior:"smooth"})}
+document.getElementById("q").addEventListener("keydown",e=>{if(e.key==="Enter")search()});
+</script>
+</body>
+</html>
